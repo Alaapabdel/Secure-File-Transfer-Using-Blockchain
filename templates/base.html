@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 16px;">
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secure File Transfer Protocol using Blockchain">
+    <title>Secure File Transfer Project</title>
+    <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'css/Home.css' %}" media="screen">
+    <script class="u-script" type="text/javascript" src="{% static 'js/jquery-1.9.1.min.js' %}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .u-menu-link {
+            text-decoration: none;
+            font-weight: normal;
+            transition: color 0.3s, border-bottom 0.3s;
+            position: relative;
+            color: #2c3e50;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1em;
+            margin: 0 15px;
+        }
+
+        .u-menu-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #12adef;
+            transition: width 0.3s;
+            position: absolute;
+            left: 50%;
+            bottom: -5px;
+            transform: translateX(-50%);
+        }
+
+        .u-menu-link:hover::after {
+            width: 100%;
+        }
+
+        .u-menu-link:hover {
+            color: #12adef;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            font-size: 20px !important;
+            font-family: 'Cairo', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .u-header {
+            background-color: white;
+            color: #2c3e50;
+            padding: 10px 0;
+        }
+
+        .u-logo-image {
+            width: 100%;
+        }
+
+        .u-logo {
+            width: 150px;
+            margin-top: 0;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .u-footer {
+            background-color: #020120;
+            color: white;
+            padding: 20px 0;
+            font-size: 0.7em;
+            text-align: center;
+        }
+
+        .u-footer a {
+            color: #12adef;
+            text-decoration: none;
+        }
+
+        .u-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .wallet-balance {
+            color: #2476d4;
+            font-weight: bold;
+            margin-left: 10%;
+        }
+    </style>
+</head>
+<body class="u-body u-xl-mode" data-path-to-root="./" data-include-products="false" data-lang="en">
+
+<header class="u-clearfix u-header u-header" id="sec-d5ff">
+    <div class="u-clearfix u-sheet u-sheet-1" style="display: flex; justify-content: space-between; align-items: center;">
+        <a href="/" class="u-image u-logo u-image-1">
+            <img src="{% static 'images/Secure.png' %}" class="u-logo-image u-logo-image-1" style="width: 80px;height: 110px;">
+        </a>
+        <div style="display: flex; align-items: center; flex-grow: 1; justify-content: center;">
+        </div>
+        {% if request.session.user_email %}
+            <span class="u-menu-link"><b>Welcome, {{ request.session.user_email }}</b></span>
+            <a href="{% url 'file_transfer' %}" class="u-menu-link"><b>File Transfer</b></a> 
+            <a href="{% url 'files' %}" class="u-menu-link"><b>My Uploaded Files</b></a> 
+            <a href="{% url 'logout' %}" class="u-menu-link"><b>Logout</b></a>
+            <span class="wallet-balance">Balance: {{ wallet_balance }}$</span>
+        {% else %}
+            <a href="{% url 'login' %}" class="u-menu-link"><b>Login</b></a>
+            <a href="{% url 'register' %}" class="u-menu-link"><b>Register</b></a>
+        {% endif %}
+    </div>
+</header>
+
+<div class="main-content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<footer class="u-footer">
+    <div>
+        <p>&copy; 2024 Secure File Transfer. All Rights Reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Blockchain Dashboard{% endblock %}
+
+{% block content %}
+<section class="dashboard-section">
+    <div class="container">
+        <h1>Blockchain Dashboard</h1>
+        <div class="blockchain-data">
+            {% for block in blocks %}
+                <div class="block">
+                    <h2>Block {{ block.block_number }}</h2>
+                    <p><strong>Timestamp:</strong> {{ block.timestamp }}</p>
+                    <p><strong>Previous Hash:</strong> {{ block.previous_hash }}</p>
+                    <p><strong>Hash:</strong> {{ block.hash }}</p>
+                    <p><strong>Data:</strong> {{ block.data }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+.dashboard-section {
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.block {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.block h2 {
+    margin-top: 0;
+}
+
+.block p {
+    margin: 5px 0;
+}
+</style>
+{% endblock %}

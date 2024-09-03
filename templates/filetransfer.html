@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+
+{% block title %}File Transfer{% endblock %}
+
+{% block content %}
+<section class="file-transfer-section">
+    <div class="container">
+        <h1>File Transfer</h1>
+
+        <div class="wallet-info">
+            <h3>Your Balance: <span class="balance">{{ wallet_balance }} coins</span></h3>
+            <h3>Cost of Transfer: <span class="cost">1 coin</span></h3>
+        </div>
+
+        <div class="transfer-container">
+            <h2>Send a File</h2>
+            
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="uploaded_files">Choose a file to send:</label>
+                <select id="uploaded_files" name="uploaded_files">
+                    {% for file in uploaded_files %}
+                        <option value="{{ file.id }}">{{ file.ipfs_hash }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                {{ form.recipient_email.label_tag }} {{ form.recipient_email }}
+                <br>
+                <button type="submit">Send File</button>
+            </form>
+        </div>
+
+        <div class="sent-files">
+            <h2>Sent Files</h2>
+            <ul>
+                {% for file in sent_files %}
+                    <li>
+                        <a href="{% url 'serve_file' file.id %}">{{ file.ipfs_hash }}</a> - Sent to {{ file.recipient.email }} on {{ file.uploaded_at }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="received-files">
+            <h2>Received Files</h2>
+            <ul>
+                {% for file in received_files %}
+                    <li>
+                        <a href="{% url 'serve_file' file.id %}">{{ file.ipfs_hash }}</a> - Sent by {{ file.sender.email }} on {{ file.uploaded_at }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+
+<style>
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+.alert-error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+.alert-success {
+    background-color: #d4edda;
+    color: #155724 !important;
+    border: 1px solid #c3e6cb;
+}
+li{
+    list-style: none;
+}
+.messages {
+    padding-left: 0; /* Remove any default padding */
+}
+.file-transfer-section {
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.wallet-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.wallet-info h3 {
+    margin: 0;
+}
+
+.wallet-info .balance, .wallet-info .cost {
+    color: #007bff;
+}
+
+.transfer-container, .sent-files, .received-files {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form label, form select, form input, form button {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #0080ff;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+form button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.sent-files ul, .received-files ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sent-files li, .received-files li {
+    background-color: #f9f9f9;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.sent-files a, .received-files a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.sent-files a:hover, .received-files a:hover {
+    text-decoration: underline;
+}
+</style>
+{% endblock %}

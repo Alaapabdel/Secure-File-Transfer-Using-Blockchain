@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% load static %}
+{% block content %}
+<section class="signup-section" style="height: 725px !important;">
+    <br><br><br>
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="signup-container">
+            <h1>Sign Up</h1>
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                <input type="email" name="email" placeholder="Enter a valid email address" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="signup-button">Sign Up</button>
+            </form>
+            <div class="terms">
+                <span>Already have an account? <a href="/login" style="color: #357ae8 !important;">Sign In</a></span>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+.alert-error {
+    background-color: #f8d7da;
+    
+    border: 1px solid #f5c6cb;
+}
+.alert-success {
+    background-color: #d4edda;
+    color: #155724 !important;
+    border: 1px solid #c3e6cb;
+}
+.signup-section {
+    background-color: #f0f0f0; /* You can change this to any color you prefer */
+    padding: 50px 0;
+    background-image: url("{% static 'images/greennbg.png' %}");
+    background-size: cover; /* Ensure the image covers the section */
+    background-position: center; /* Center the image */
+}
+.signup-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    max-width: 100%;
+    margin: 20px auto;
+}
+.signup-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.signup-container input {
+    display: block;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #0080ff;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 0 auto 10px;
+}
+.signup-container button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.signup-container .signup-button {
+    background-color: #007bff;
+    color: white;
+}
+.signup-container .signup-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+.signup-container .social-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.signup-container .social-buttons button {
+    width: 48%;
+    background-color: #e9ecef;
+    color: black;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.signup-container .social-buttons .google-button {
+    background-color: #4285f4;
+    color: white;
+}
+.signup-container .social-buttons .google-button:hover {
+    background-color: #357ae8;
+    transform: scale(1.05);
+}
+.signup-container .social-buttons .facebook-button {
+    background-color: #3b5998;
+    color: white;
+}
+.signup-container .social-buttons .facebook-button:hover {
+    background-color: #2d4373;
+    transform: scale(1.05);
+}
+.signup-container .terms {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #000149;
+    text-align: center;
+}
+</style>
+{% endblock %}

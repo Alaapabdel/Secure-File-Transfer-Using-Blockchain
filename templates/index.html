@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}Secure File Transfer{% endblock %}
+{% load static %}
+{% block content %}
+
+<section class="u-clearfix u-expanded-width-lg u-expanded-width-md u-expanded-width-xl u-image u-section-1" id="carousel_c23b">
+    <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+        <div class="u-layout">
+            <div class="u-layout-row">
+                <div class="u-container-style u-image u-layout-cell u-left-cell u-size-30 u-image-1">
+                    <div class="u-container-layout"></div>
+                </div>
+                <div class="u-container-style u-image u-layout-cell u-right-cell u-size-30 u-image-2">
+                    <div class="u-container-layout">
+                        <div class="u-border-6 u-border-white u-container-style u-expanded-width-xs u-group u-image u-opacity u-opacity-70 u-image-3">
+                            <div class="u-container-layout u-container-layout-3"></div>
+                        </div>
+                        <div class="u-container-style u-group u-group-2" style="color: aliceblue !important;">
+                            <div class="u-container-layout u-valign-middle-md u-valign-middle-xl u-valign-middle-xs u-container-layout-4" style="margin-left: 20%;">
+                                <h1 class="u-text u-title u-text-1">Secure File Transfer<br>Using Blockchain</h1>
+                                <p class="u-large-text u-text u-text-variant u-text-2">Ensuring secure transfers with cutting-edge blockchain technology.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="u-clearfix u-section-2" id="carousel_7661">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-gutter-30 u-layout-wrap u-layout-wrap-1">
+            <div class="u-gutter-0 u-layout">
+                <div class="u-layout-row">
+                    <div class="u-size-30">
+                        <div class="u-layout-col">
+                            <div class="u-container-style u-layout-cell u-left-cell u-size-60 u-layout-cell-1">
+                                <div class="u-container-layout u-valign-middle u-container-layout-1">
+                                    <h5 class="u-text u-text-1">Blockchain Technology</h5>
+                                    <h2 class="u-text u-text-2">Revolutionizing File Transfer Security</h2>
+                                    <p class="u-text u-text-3">Blockchain technology provides unparalleled security and transparency for file transfers, ensuring data integrity and protection.</p>
+                                    <p class="u-text u-text-4">Our solution leverages the immutable nature of blockchain to create a secure environment for transferring files. By using cryptographic techniques and decentralized networks, we ensure that your files are protected from unauthorized access and tampering.</p>
+                                    {% if request.session.user_email %}
+                                        <a href="/dashboard" class="u-border-1 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-palette-1-base u-btn u-button-style u-text-black u-btn-1" title="Learn more" style="border-color:  #12adef !important;">View the Blockchain</a>
+                                    {% else %}
+                                        <a href="/login" class="u-border-1 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-palette-1-base u-btn u-button-style u-text-black u-btn-1" title="Learn more" style="border-color:  #12adef !important;">Join the Blockchain</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="u-size-30">
+                        <div class="u-layout-col">
+                            <div class="u-container-style u-image u-layout-cell u-right-cell u-size-30 u-image-1">
+                                <div class="u-container-layout"></div>
+                            </div>
+                            <div class="u-container-style u-image u-layout-cell u-right-cell u-size-30 u-image-2" style="height: 30px;">
+                                <div class="u-container-layout">
+                                    <div class="u-shape u-shape-rectangle u-white u-shape-1"></div>
+                                    <div class="u-palette-1-base u-shape u-shape-rectangle u-shape-2" style="background-color: #12adef !important;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
