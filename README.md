@@ -51,5 +51,8 @@ This project combines the robust features of Django, IPFS, and blockchain techno
 
 ---
 
+### Acknowledgments
+I would like to extend my sincere thanks to **Ahmed ElTohamy** for his valuable help and contributions to this project.
+
 ### Note
 This project was part of my practical work for my Cyber Security Pre-Masters course at Ain Shams University, under the guidance of Professor Tamer Mostafa. I decided to share it publicly after achieving a perfect score of 100/100.
